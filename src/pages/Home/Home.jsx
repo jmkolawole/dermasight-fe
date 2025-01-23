@@ -1,6 +1,11 @@
+import Topbar from "./Topbar/Topbar"
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+        <Topbar />
+        Home
+    </div>
   )
 }
 

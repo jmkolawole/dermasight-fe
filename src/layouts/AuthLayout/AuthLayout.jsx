@@ -4,6 +4,7 @@ import {useContext} from 'react';
 import {AccountContext} from '../../contexts';
 import {has} from 'lodash';
 import {useEffect} from 'react';
+import * as S from './AuthLayout.style';
 
 const pageTitleMap = {
   '/login': 'Login',
@@ -33,7 +34,7 @@ const AuthLayout = () => {
       setRenderOutlet(true);
 
       if (has(pageTitleMap, location.pathname)) {
-        document.getElementsByTagName('title')[0].innerText = `3Mote - ${
+        document.getElementsByTagName('title')[0].innerText = `Dermasight - ${
           pageTitleMap[location.pathname]
         }`;
       }
@@ -42,9 +43,11 @@ const AuthLayout = () => {
   }, [account, navigate, setRenderOutlet, location.pathname]);
 
   return (
-    <div>
-      <Outlet />
-    </div>
+    <S.Container>
+      <S.InnerContainer>
+        <Outlet />
+      </S.InnerContainer>
+    </S.Container>
   );
 };
 

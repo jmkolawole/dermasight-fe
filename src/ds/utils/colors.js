@@ -3,6 +3,7 @@ export const colors = {
     0: '#FFFFFF',
     100: '#000000',
   },
+
   neutral: {
     50: '#FAFAFA',
     100: '#F5F5F5',
@@ -26,6 +27,8 @@ export const colors = {
     700: '#01497C',
     800: '#013A63',
     900: '#012A4A',
+    1000: '#2AB3B5',
+    1100: '#228D8F',
   },
   secondary: {
     50: '#FFE169',
