@@ -3,9 +3,31 @@ import {Tab, Text} from '../../ds';
 import * as S from './Home.style';
 import DragAndDrop from './DragAndDrop';
 import Description from './Description';
+import {useNavigate} from 'react-router-dom';
 
 const Home = () => {
   const [uploadType, setUploadType] = useState('upload');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDescriptionLoading, setIsDescriptionLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleUpload = (base64Image) => {
+    console.log(base64Image);
+    setIsLoading(true);
+    setTimeout(() => {
+      //setIsLoading(false);
+      navigate('/analysis');
+    }, 2000);
+  };
+
+  const handleSubmitDescription = (description) => {
+    console.log(description);
+    setIsDescriptionLoading(true);
+    setTimeout(() => {
+      navigate('/analysis');
+    }, 2000);
+  };
 
   return (
     <S.Container>
@@ -34,7 +56,14 @@ const Home = () => {
             <Text weight={600} type="h6">
               {uploadType === 'upload' ? 'Upload Image' : 'Describe Symptoms'}
             </Text>
-            {uploadType === 'upload' ? <DragAndDrop /> : <Description />}
+            {uploadType === 'upload' ? (
+              <DragAndDrop isLoading={isLoading} onUpload={handleUpload} />
+            ) : (
+              <Description
+                isLoading={isDescriptionLoading}
+                onSubmit={handleSubmitDescription}
+              />
+            )}
           </S.SymptomsWrapper>
         </S.MainContent>
       </S.Content>

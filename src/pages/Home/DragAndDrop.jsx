@@ -1,10 +1,11 @@
 import {useCallback, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 import * as S from './Home.style';
+import PropTypes from 'prop-types';
 
-const DragAndDrop = () => {
-  const [base64, setBase64] = useState(null);
-  const [loading, setLoading] = useState(false);
+
+const DragAndDrop = ({onUpload, isLoading}) => {
+  const [setBase64] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -14,9 +15,7 @@ const DragAndDrop = () => {
         const base64Image = reader.result;
         setBase64(base64Image);
 
-        // Trigger API call here
-        setLoading(true);
-        uploadImage(base64Image).finally(() => setLoading(false));
+        uploadImage(base64Image);
       };
       reader.readAsDataURL(file);
     }
@@ -30,14 +29,12 @@ const DragAndDrop = () => {
   });
 
   const uploadImage = async (base64Image) => {
-    console.log('Uploading image...');
-    // Simulate API call delay
-    return new Promise((resolve) => setTimeout(resolve, 2000));
+    onUpload(base64Image);
   };
 
   return (
     <S.ImageContainer>
-      {loading ? (
+      {isLoading ? (
         <S.LoadingOverlay>
           <S.LoadingSpinner /> {/* Your spinner or loading indicator */}
           <S.LoadingText>Uploading...</S.LoadingText>
@@ -62,3 +59,8 @@ const DragAndDrop = () => {
 };
 
 export default DragAndDrop;
+
+DragAndDrop.propTypes = {
+  onUpload: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
