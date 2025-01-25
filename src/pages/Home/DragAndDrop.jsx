@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import {useCallback, useState} from 'react';
+import {useDropzone} from 'react-dropzone';
 import * as S from './Home.style';
 
 const DragAndDrop = () => {
@@ -22,10 +22,10 @@ const DragAndDrop = () => {
     }
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({
     onDrop,
     accept: {
-      'image/*': [] // Accept all image types (JPEG, PNG, etc.)
+      'image/*': [], // Accept all image types (JPEG, PNG, etc.)
     },
   });
 
@@ -42,10 +42,6 @@ const DragAndDrop = () => {
           <S.LoadingSpinner /> {/* Your spinner or loading indicator */}
           <S.LoadingText>Uploading...</S.LoadingText>
         </S.LoadingOverlay>
-      ) : base64 ? (
-        <S.ImagePreview>
-          <S.PreviewImage src={base64} alt="Preview" />
-        </S.ImagePreview>
       ) : (
         <S.ImageWrapper {...getRootProps()}>
           <input {...getInputProps()} />
