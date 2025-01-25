@@ -1,8 +1,8 @@
 import {useContext, useEffect, useState} from 'react';
 import {AccountContext} from '../../contexts';
 import {Outlet, useNavigate} from 'react-router-dom';
-import PageLoader from '../../components/PageLoader/PageLoader'
-
+import PageLoader from '../../components/PageLoader/PageLoader';
+import Topbar from '../../components/Topbar/Topbar';
 
 export const Layout = () => {
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ export const Layout = () => {
     <div>
       {renderOutlet ? (
         <div>
+          <Topbar />
           <Outlet />
         </div>
       ) : (

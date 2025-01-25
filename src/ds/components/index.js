@@ -4,5 +4,7 @@ import TextInput from './TextInput/TextInput';
 import Icon from './Icon/Icon';
 import Avatar from './Avatar/Avatar';
 import Menu from '../../components/Menu/Menu';
+import Tab from './Tab/Tab';
+import TextArea from './TextArea/TextArea';
 
-export {Text, Button, TextInput, Icon, Avatar, Menu};
+export {Text, Button, TextInput, Icon, Avatar, Menu, Tab, TextArea};

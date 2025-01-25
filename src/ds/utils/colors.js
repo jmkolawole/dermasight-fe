@@ -2,6 +2,7 @@ export const colors = {
   shades: {
     0: '#FFFFFF',
     100: '#000000',
+    200: '#F9FAFB',
   },
 
   neutral: {

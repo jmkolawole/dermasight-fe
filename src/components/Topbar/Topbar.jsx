@@ -1,9 +1,9 @@
 import {useContext, useRef, useState} from 'react';
-import {Avatar} from '../../../ds/components';
 import * as S from './Topbar.style';
-import {AccountContext} from '../../../contexts';
-import Menu from '../../../components/Menu/Menu';
 import { useNavigate } from 'react-router-dom';
+import { Avatar, Menu } from '../../ds';
+import { AccountContext } from '../../contexts';
+
 
 const Topbar = () => {
   const {account} = useContext(AccountContext);

@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import { colors } from '../../../ds';
+import { colors } from '../../ds';
+
 
 export const Container = styled.div`
   display: flex;
   padding: 12px 32px;
   flex-direction: row-reverse;
   align-items: center;
+  position: sticky;
 `;
 
 export const MenuContainer = styled.div`
