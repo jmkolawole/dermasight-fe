@@ -5,7 +5,7 @@ import { colors } from '../../ds';
 export const Container = styled.div`
   display: flex;
   padding: 12px 32px;
-  flex-direction: row-reverse;
+  justify-content: space-between;
   align-items: center;
   position: sticky;
 `;

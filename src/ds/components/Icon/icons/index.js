@@ -78,3 +78,4 @@ export {UserRound} from './UserRound.svg';
 export {RewindCog} from './RewindCog.svg';
 export {OpenFolder} from './OpenFolder.svg';
 export {KanbanBoard} from './KanbanBoard.svg';
+export {Home} from './Home.svg';

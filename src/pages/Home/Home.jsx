@@ -4,6 +4,7 @@ import * as S from './Home.style';
 import DragAndDrop from './DragAndDrop';
 import Description from './Description';
 import {useNavigate} from 'react-router-dom';
+import History from './History';
 
 const Home = () => {
   const [uploadType, setUploadType] = useState('upload');
@@ -66,6 +67,7 @@ const Home = () => {
             )}
           </S.SymptomsWrapper>
         </S.MainContent>
+        <History />
       </S.Content>
     </S.Container>
   );

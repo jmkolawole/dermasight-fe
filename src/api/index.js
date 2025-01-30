@@ -63,3 +63,7 @@ export const request = async (
       });
   }
 };
+
+export const getImagesUrl = (filename) => {
+  return `${apiUrl}/image${filename}`;
+};

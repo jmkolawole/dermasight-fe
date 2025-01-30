@@ -30,7 +30,7 @@ const AuthLayout = () => {
     ) {
       navigate('/');
     } else {
-      localStorage.removeItem('account');
+      //localStorage.removeItem('account');
       setRenderOutlet(true);
 
       if (has(pageTitleMap, location.pathname)) {

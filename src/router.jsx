@@ -5,6 +5,7 @@ import Login from './pages/Auth/Login/Login';
 import Home from './pages/Home/Home';
 import Logout from './pages/Auth/Logout/Logout';
 import Analysis from './pages/Analysis/Analysis';
+import Settings from './pages/Settings/Settings';
 
 export const router = createBrowserRouter([
   // UNPROTECTED PAGES
@@ -32,7 +33,12 @@ export const router = createBrowserRouter([
       {
         path: '/logout',
         element: <Logout />,
+      },
+      {
+        path: '/settings',
+        element: <Settings />,
       }
+
     ],
   },
 ]);

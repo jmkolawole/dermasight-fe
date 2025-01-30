@@ -1,9 +1,9 @@
 import {useContext, useRef, useState} from 'react';
 import * as S from './Topbar.style';
-import { useNavigate } from 'react-router-dom';
-import { Avatar, Menu } from '../../ds';
-import { AccountContext } from '../../contexts';
-
+import {useNavigate} from 'react-router-dom';
+import {Avatar, Icon, Menu} from '../../ds';
+import {AccountContext} from '../../contexts';
+import { getImagesUrl } from '../../api';
 
 const Topbar = () => {
   const {account} = useContext(AccountContext);
@@ -12,7 +12,7 @@ const Topbar = () => {
   const navigate = useNavigate();
 
   const handleSettings = () => {
-    setOpenMenu(true);
+    navigate('/settings');
   };
 
   const handleLogout = () => {
@@ -34,8 +34,14 @@ const Topbar = () => {
     },
   ];
 
+  //getImagesUrl(data.data.image)
+  console.log(account);
+
   return (
     <S.Container>
+      <div style={{cursor:'pointer'}} onClick={() => navigate('/')}>
+        <Icon name={'home'} color='primary.1000'/>
+      </div>
       <div
         onClick={() => setOpenMenu(!openMenu)}
         ref={menuRef}
@@ -46,12 +52,14 @@ const Topbar = () => {
           type={account.user.avatar ? 'image' : 'text'}
           value={
             account.user.avatar
-              ? account.user.avatar
+              ? getImagesUrl(account.user.avatar)
               : account.user.name ?? account.user.email
           }
         />
         {openMenu && (
-          <div style={{position: 'absolute', top: '72px', right: '0', zIndex: 10}}>
+          <div
+            style={{position: 'absolute', top: '72px', right: '0', zIndex: 10}}
+          >
             <Menu
               menuItems={menuItems}
               setShowMenu={setOpenMenu}
@@ -60,7 +68,6 @@ const Topbar = () => {
           </div>
         )}
       </div>
-
     </S.Container>
   );
 };

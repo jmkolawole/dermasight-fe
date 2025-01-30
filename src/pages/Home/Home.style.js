@@ -12,10 +12,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 672px;
-  padding-top: 48px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow-y: auto;
 `;
 
 export const Header = styled.div`
@@ -43,16 +43,17 @@ export const SymptomsWrapper = styled.div`
 
 export const DescriptionWrapper = styled.div`
   display: flex;
-  height: 306px;
+  height: 236px !important;
   flex-direction: column;
-  gap: 16px;
+  gap: 5px;
   padding: 25px;
   background-color: ${colors.shades[0]};
   border: 1px solid #e5e7eb;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+  border-radius: 6px;
 
   & textarea {
-    height: 200px !important;
+    height: 136px !important;
   }
 `;
 
@@ -61,9 +62,10 @@ export const ImageContainer = styled.div`
   background-color: ${colors.shades[0]};
   border: 1px solid #e5e7eb;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
-  height: 290px;
+  height: 220px;
   padding: 33px;
 `;
+
 export const ImageWrapper = styled.div`
   border: 2px dashed #ccc;
   padding: 20px;
@@ -73,7 +75,7 @@ export const ImageWrapper = styled.div`
   &:hover {
     border-color: #5dc3c2;
   }
-  height: calc(100% - 20px - 33px);
+  height: calc(100% - 20px - 25px);
 `;
 
 export const DragActive = styled.p`
@@ -84,7 +86,6 @@ export const DragActive = styled.p`
 export const Icon = styled.div`
   font-size: 40px;
   color: #5dc3c2;
-  margin-bottom: 16px;
 `;
 
 export const Text = styled.p`
@@ -138,7 +139,6 @@ export const Base64Textarea = styled.textarea`
   background: #f9f9f9;
 `;
 
-
 export const LoadingOverlay = styled.div`
   position: absolute;
   top: 0;
@@ -152,7 +152,6 @@ export const LoadingOverlay = styled.div`
   justify-content: center;
   z-index: 10;
 `;
-
 
 export const LoadingSpinner = styled.div`
   width: 40px;
@@ -188,3 +187,52 @@ export const PreviewImage = styled.img`
   max-height: 100%;
   border-radius: 0.5rem;
 `;
+
+export const HistorySection = styled.div`
+  display: flex;
+  gap:20px;
+  align-items: flex-start; /* Ensures content aligns at the top */
+  flex-direction: column;
+  justify-content: start;
+  padding-top: 25px;
+`;
+
+export const HistoryContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${colors.shades[0]};
+  border: 1px solid #e5e7eb;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  max-height: 400px;
+  overflow-y: auto;
+`;
+
+
+export const HistoryContentInner = styled.div`
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+
+export const HistoryItem = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 6px;
+  align-items: center;
+`;
+
+export const HistoryItemImg = styled.div`
+  width: 50px;
+`;
+
+export const HistoryItemContent = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 6px;
+`;
+

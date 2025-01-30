@@ -19,8 +19,8 @@ export const Layout = () => {
     ) {
       setRenderOutlet(true);
     } else {
-      localStorage.removeItem('account');
-      navigate('/login');
+      //localStorage.removeItem('account');
+      //navigate('/login');
     }
   }, [account, navigate]);
 
