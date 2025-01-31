@@ -5,13 +5,16 @@ import DragAndDrop from './DragAndDrop';
 import Description from './Description';
 import {useNavigate} from 'react-router-dom';
 import History from './History';
+import {useGetDiagnosisMutation} from '../../api/mutations/diagnosis.mutation';
+import {handleError} from '../../utils/functions';
 
 const Home = () => {
   const [uploadType, setUploadType] = useState('upload');
   const [isLoading, setIsLoading] = useState(false);
-  const [isDescriptionLoading, setIsDescriptionLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const {isPending, mutate} = useGetDiagnosisMutation();
 
   const handleUpload = (base64Image) => {
     console.log(base64Image);
@@ -23,11 +26,17 @@ const Home = () => {
   };
 
   const handleSubmitDescription = (description) => {
-    console.log(description);
-    setIsDescriptionLoading(true);
-    setTimeout(() => {
-      navigate('/analysis');
-    }, 2000);
+    const payload = {
+      skin_issue_description: description,
+    };
+
+    mutate(payload, {
+      onSuccess: (res) => {
+        navigate('/analysis', {state: {response: res.data}});
+      },
+      onError: (err) => handleError(err),
+    });
+
   };
 
   return (
@@ -61,7 +70,7 @@ const Home = () => {
               <DragAndDrop isLoading={isLoading} onUpload={handleUpload} />
             ) : (
               <Description
-                isLoading={isDescriptionLoading}
+                isLoading={isPending}
                 onSubmit={handleSubmitDescription}
               />
             )}

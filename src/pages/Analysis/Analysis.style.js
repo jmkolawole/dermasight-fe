@@ -21,7 +21,8 @@ export const Content = styled.div`
 
 export const ContentInner = styled.div`
   display: flex;
-  height: 236px !important;
+  height: fit-content !important;
+  max-height: calc(100vh - 172px);;
   flex-direction: column;
   gap: 5px;
   padding: 25px;

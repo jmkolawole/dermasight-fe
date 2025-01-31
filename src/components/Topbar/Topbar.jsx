@@ -34,9 +34,6 @@ const Topbar = () => {
     },
   ];
 
-  //getImagesUrl(data.data.image)
-  console.log(account);
-
   return (
     <S.Container>
       <div style={{cursor:'pointer'}} onClick={() => navigate('/')}>

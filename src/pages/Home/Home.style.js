@@ -224,6 +224,11 @@ export const HistoryItem = styled.div`
   width: 100%;
   gap: 6px;
   align-items: center;
+  cursor: pointer;
+  
+  & :hover {
+    background-color: ${colors.neutral[200]};
+  }
 `;
 
 export const HistoryItemImg = styled.div`
