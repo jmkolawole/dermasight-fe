@@ -21,7 +21,8 @@ const Home = () => {
     setIsLoading(true);
     setTimeout(() => {
       //setIsLoading(false);
-      navigate('/analysis');
+      //navigate('/analysis');
+      setIsLoading(false);
     }, 2000);
   };
 

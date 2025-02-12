@@ -11,6 +11,7 @@ const Analysis = () => {
   const [details, setDetails] = useState({});
 
   useState(() => {
+    console.log(parseApiResponse(response));
     setDetails(parseApiResponse(response));
   }, []);
 

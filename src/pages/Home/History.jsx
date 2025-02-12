@@ -18,7 +18,7 @@ const History = () => {
 
   const getDetails = (hist) => {
     let result = parseApiResponse(hist.chatgpt_response);
-    result = truncateText(result.assessment, 25);
+    result = truncateText(result.symptomsDescription, 25);
     return result;
   };
 

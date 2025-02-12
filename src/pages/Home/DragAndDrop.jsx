@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 
 const DragAndDrop = ({onUpload, isLoading}) => {
-  const [setBase64] = useState(null);
+  const [base64, setBase64] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];

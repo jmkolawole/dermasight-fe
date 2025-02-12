@@ -53,27 +53,35 @@ export const timeAgo = (datetime) => {
 };
 
 export const parseApiResponse = (responseText) => {
-  // Assuming the API response is in the "response" field
-  const severityMatch = responseText.match(/severity score of (\d+) out of 5/);
+  // Split the response text by the headers
+  const descriptionMatch = responseText.match(/\*\*Description:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
+  const recommendationMatch = responseText.match(/\*\*Recommendation:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
+  const assessmentMatch = responseText.match(/\*\*Assessment:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
+  const severityMatch = responseText.match(/\*\*Rating:\*\*\s*Severity Score:\s*(\d+)\/5/);
+
+  // Extract the content based on the matches
+  const symptomsDescription = descriptionMatch ? descriptionMatch[1].trim() : null;
+  const recommendations = recommendationMatch ? recommendationMatch[1].trim() : null;
+  const assessment = assessmentMatch ? assessmentMatch[1].trim() : null;
   const severity = severityMatch ? severityMatch[1] : null;
 
   return {
-    symptomsDescription: responseText.split('\n\n')[0], // Extract the first paragraph
-    assessment: responseText.split('\n\n')[1], // Extract the second paragraph
-    severity: severity, // Extract the severity score
-    recommendations: responseText.split('\n\n')[2], // Extract the third paragraph
+    symptomsDescription, // Extract the description content
+    recommendations,    // Extract the recommendation content
+    assessment,         // Extract the assessment content
+    severity,           // Extract the severity score
   };
 };
 
 export const truncateText = (text, n) => {
   // Split the text into an array of words
-  const words = text.split(' ');
+  const words = text?.split(' ');
 
   // If the text has fewer words than `n`, return the original text
-  if (words.length <= n) {
+  if (words?.length <= n) {
     return text;
   }
 
   // Truncate the text to `n` words and add an ellipsis
-  return words.slice(0, n).join(' ') + '...';
+  return words?.slice(0, n).join(' ') + '...';
 };

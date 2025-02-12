@@ -206,7 +206,7 @@ export const HistoryContent = styled.div`
   width: 100%;
   padding: 25px;
   box-sizing: border-box;
-  max-height: 400px;
+  max-height: 250px;
   overflow-y: auto;
 `;
 
