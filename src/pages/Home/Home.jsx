@@ -43,7 +43,13 @@ const Home = () => {
 
     mutateImage(payload, {
       onSuccess: (res) => {
-        navigate('/analysis', {state: {response: res.data}});
+        navigate('/analysis', {
+          state: {
+            response: res.data.diagnosis,
+            imagePath: res.data.image_path,
+            diagnosisId: res.data.diagnosis_id
+          }
+        });
       },
       onError: (err) => handleError(err),
     });
@@ -56,7 +62,12 @@ const Home = () => {
 
     mutateDescription(payload, {
       onSuccess: (res) => {
-        navigate('/analysis', {state: {response: res.data}});
+        navigate('/analysis', {
+          state: {
+            response: res.data.diagnosis,
+            diagnosisId: res.data.diagnosis_id
+          }
+        });
       },
       onError: (err) => handleError(err),
     });
