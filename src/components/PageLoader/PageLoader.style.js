@@ -29,7 +29,7 @@ export const Loader = styled.i`
     height: 5px;
     position: absolute;
     border-radius: 4px;
-    background: ${colors.primary[600]};
+    background: ${colors.primary[1000]};
     animation: loadbar 1.5s cubic-bezier(0, 0, 0.58, 1) infinite;
   }
 

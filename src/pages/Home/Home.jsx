@@ -5,25 +5,48 @@ import DragAndDrop from './DragAndDrop';
 import Description from './Description';
 import {useNavigate} from 'react-router-dom';
 import History from './History';
-import {useGetDiagnosisMutation} from '../../api/mutations/diagnosis.mutation';
+import {useGetDiagnosisMutation, useImageDiagnosisMutation} from '../../api/mutations/diagnosis.mutation';
 import {handleError} from '../../utils/functions';
+
+const MedicalDisclaimer = () => {
+  return (
+    <S.DisclaimerContainer>
+      <S.DisclaimerIcon>
+        <i className="fas fa-exclamation-triangle"></i>
+      </S.DisclaimerIcon>
+      <S.DisclaimerContent>
+        <Text weight={600} size="sm" color="neutral.800">
+          Medical Disclaimer
+        </Text>
+        <Text size="xs" color="neutral.700">
+          This tool is for informational purposes only and is not a substitute for professional medical advice, 
+          diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider 
+          with any questions you may have regarding a medical condition.
+        </Text>
+      </S.DisclaimerContent>
+    </S.DisclaimerContainer>
+  );
+};
 
 const Home = () => {
   const [uploadType, setUploadType] = useState('upload');
-  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const {isPending, mutate} = useGetDiagnosisMutation();
+  const {isPending: isDescriptionPending, mutate: mutateDescription} = useGetDiagnosisMutation();
+  const {isPending: isImagePending, mutate: mutateImage} = useImageDiagnosisMutation();
 
   const handleUpload = (base64Image) => {
-    console.log(base64Image);
-    setIsLoading(true);
-    setTimeout(() => {
-      //setIsLoading(false);
-      //navigate('/analysis');
-      setIsLoading(false);
-    }, 2000);
+    const payload = {
+      image: base64Image
+    };
+
+    mutateImage(payload, {
+      onSuccess: (res) => {
+        navigate('/analysis', {state: {response: res.data}});
+      },
+      onError: (err) => handleError(err),
+    });
   };
 
   const handleSubmitDescription = (description) => {
@@ -31,13 +54,12 @@ const Home = () => {
       skin_issue_description: description,
     };
 
-    mutate(payload, {
+    mutateDescription(payload, {
       onSuccess: (res) => {
         navigate('/analysis', {state: {response: res.data}});
       },
       onError: (err) => handleError(err),
     });
-
   };
 
   return (
@@ -68,15 +90,17 @@ const Home = () => {
               {uploadType === 'upload' ? 'Upload Image' : 'Describe Symptoms'}
             </Text>
             {uploadType === 'upload' ? (
-              <DragAndDrop isLoading={isLoading} onUpload={handleUpload} />
+              <DragAndDrop isLoading={isImagePending} onUpload={handleUpload} />
             ) : (
               <Description
-                isLoading={isPending}
+                isLoading={isDescriptionPending}
                 onSubmit={handleSubmitDescription}
               />
             )}
           </S.SymptomsWrapper>
         </S.MainContent>
+        
+        <MedicalDisclaimer />
         <History />
       </S.Content>
     </S.Container>

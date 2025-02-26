@@ -6,3 +6,9 @@ export const useGetDiagnosisMutation = () =>
     mutationFn: (data) => request('/diagnosis', 'post', data, true),
     retry: false,
   });
+
+export const useImageDiagnosisMutation = () =>
+  useMutation({
+    mutationFn: (data) => request('/diagnosis/image', 'post', data, true),
+    retry: false,
+  });

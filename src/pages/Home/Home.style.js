@@ -204,12 +204,27 @@ export const HistoryContent = styled.div`
   border: 1px solid #e5e7eb;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
   width: 100%;
-  padding: 25px;
+  padding: 0;
   box-sizing: border-box;
   max-height: 250px;
-  overflow-y: auto;
+  overflow: hidden; /* Changed from overflow-y: auto to hidden */
+  position: relative; /* Added position relative */
 `;
 
+export const HistoryHeader = styled.div`
+  position: sticky;
+  top: 0;
+  background-color: ${colors.shades[0]};
+  padding: 25px 25px 10px 25px;
+  z-index: 2;
+  border-bottom: 1px solid #f0f0f0;
+`;
+
+export const HistoryScrollArea = styled.div`
+  overflow-y: auto;
+  max-height: 200px;
+  padding: 0 25px 25px 25px;
+`;
 
 export const HistoryContentInner = styled.div`
   padding-top: 10px;
@@ -217,7 +232,6 @@ export const HistoryContentInner = styled.div`
   flex-direction: column;
   gap: 12px;
 `;
-
 
 export const HistoryItem = styled.div`
   display: flex;
@@ -233,11 +247,46 @@ export const HistoryItem = styled.div`
 
 export const HistoryItemImg = styled.div`
   width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    object-fit: cover;
+    border-radius: 9px;
+  }
 `;
 
 export const HistoryItemContent = styled.div`
   display: flex;
   width: 100%;
   gap: 6px;
+`;
+
+// Medical Disclaimer Styles
+export const DisclaimerContainer = styled.div`
+  display: flex;
+  background-color: ${colors.shades[0]};
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #f97316; /* Orange warning color */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 24px 0;
+  gap: 12px;
+  align-items: flex-start;
+`;
+
+export const DisclaimerIcon = styled.div`
+  color: #f97316; /* Orange warning color */
+  font-size: 20px;
+  margin-top: 2px;
+`;
+
+export const DisclaimerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
 `;
 

@@ -6,15 +6,25 @@ import Home from './pages/Home/Home';
 import Logout from './pages/Auth/Logout/Logout';
 import Analysis from './pages/Analysis/Analysis';
 import Settings from './pages/Settings/Settings';
+import Landing from './pages/Landing/Landing';
 
 export const router = createBrowserRouter([
   // UNPROTECTED PAGES
+  {
+    path: '/',
+    element: <Landing />,
+    index: true,
+  },
   {
     element: <AuthLayout />,
     children: [
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/signup',
+        element: <Login isSignUp={true} />,
       },
     ],
   },
@@ -23,7 +33,7 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: '/home',
         element: <Home />,
       },
       {
@@ -38,7 +48,6 @@ export const router = createBrowserRouter([
         path: '/settings',
         element: <Settings />,
       }
-
     ],
   },
 ]);

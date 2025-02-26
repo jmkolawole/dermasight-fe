@@ -8,6 +8,13 @@ export const useLogin = () =>
     retry: false,
   });
 
+// Register Mutation (for Laravel endpoint)
+export const useRegister = () =>
+  useMutation({
+    mutationFn: (data) => request('/auth/register', 'post', data, false),
+    retry: false,
+  });
+
 export const useLogoutMutation = () => {
   return useMutation({
     mutationFn: () => request('/auth/logout', 'post', {}, true),

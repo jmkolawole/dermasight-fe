@@ -54,7 +54,7 @@ export const Secondary = styled(Button)`
   }
 
   &:hover {
-    background: ${colors.primary[200]};
+    background: ${colors.primary[1000]};
     color: ${colors.shades[0]};
 
     & path {
