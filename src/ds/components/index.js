@@ -5,6 +5,6 @@ import Icon from './Icon/Icon';
 import Avatar from './Avatar/Avatar';
 import Menu from '../../components/Menu/Menu';
 import Tab from './Tab/Tab';
-import TextArea from './TextArea/TextArea';
+import TextArea from './Textarea/Textarea';
 
 export {Text, Button, TextInput, Icon, Avatar, Menu, Tab, TextArea};
