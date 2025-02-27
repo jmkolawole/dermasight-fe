@@ -34,7 +34,7 @@ const AuthLayout = () => {
       setRenderOutlet(true);
 
       if (has(pageTitleMap, location.pathname)) {
-        document.getElementsByTagName('title')[0].innerText = `Dermasight - ${
+        document.getElementsByTagName('title')[0].innerText = `Skinxray - ${
           pageTitleMap[location.pathname]
         }`;
       }
