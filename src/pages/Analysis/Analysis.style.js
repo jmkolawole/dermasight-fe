@@ -18,6 +18,11 @@ export const Content = styled.div`
   position: relative;
   overflow-y: hidden;
   transition: height 0.3s ease;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 16px;
+  }
 `;
 
 export const ResultHeader = styled.div`
@@ -29,6 +34,17 @@ export const ResultHeader = styled.div`
   position: sticky;
   top: 0;
   z-index: 10;
+  
+  @media (max-width: 768px) {
+    padding: 20px 0 16px;
+    flex-direction: column;
+    gap: 12px;
+    
+    & > div:first-child {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
 `;
 
 export const ResultIcon = styled.div`
@@ -42,6 +58,13 @@ export const ResultIcon = styled.div`
   color: white;
   font-size: 20px;
   margin-right: 12px;
+  
+  @media (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    margin-right: 8px;
+  }
 `;
 
 export const ContentInner = styled.div`
@@ -61,6 +84,14 @@ export const ContentInner = styled.div`
   min-height: ${props => props.compact ? 'auto' : '500px'};
   height: ${props => props.compact ? 'auto' : '100%'};
   max-height: ${props => props.compact ? '400px' : 'none'};
+  
+  @media (max-width: 768px) {
+    padding: 20px 16px;
+    gap: 12px;
+    margin-bottom: ${props => props.compact ? '16px' : '70px'};
+    padding-bottom: ${props => props.compact ? '16px' : '80px'};
+    min-height: ${props => props.compact ? 'auto' : '400px'};
+  }
 `;
 
 export const SectionCard = styled.div`
@@ -85,6 +116,10 @@ export const SectionHeader = styled.div`
   &:hover {
     background-color: rgba(0, 0, 0, 0.03);
   }
+  
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 export const SectionContent = styled.div`
@@ -98,6 +133,11 @@ export const SectionContent = styled.div`
   transition: opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
   white-space: pre-wrap;
   word-break: break-word;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: ${props => props.isOpen ? '0 16px 16px' : '0 16px'};
+  }
   
   @media print {
     display: block !important;
@@ -125,6 +165,12 @@ export const SeverityContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 `;
 
 export const SeverityScale = styled.div`
@@ -142,6 +188,11 @@ export const SeverityDot = styled.div`
      props.level >= 3 ? '#f97316' : 
      props.level >= 2 ? '#facc15' : '#22c55e') : 
     '#e5e7eb'};
+    
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 export const PrintButtonContainer = styled.div`
@@ -157,6 +208,12 @@ export const PrintButtonContainer = styled.div`
   padding-top: ${props => props.compact ? '0' : '20px'};
   margin-top: ${props => props.compact ? '20px' : '0'};
   transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 16px;
+    bottom: ${props => props.compact ? 'auto' : '16px'};
+  }
   
   @media print {
     display: none;
@@ -187,5 +244,12 @@ export const PrintButton = styled.button`
   &:active {
     transform: translateY(0);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 10px 16px;
+    font-size: 13px;
+    width: 100%;
+    justify-content: center;
   }
 `;

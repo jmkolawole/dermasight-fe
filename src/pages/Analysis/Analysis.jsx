@@ -99,6 +99,7 @@ const Analysis = () => {
   const imagePath = location.state?.imagePath;
   const [details, setDetails] = useState({});
   const [isPrinting, setIsPrinting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   // State to track which sections are open
   const [openSections, setOpenSections] = useState({
@@ -108,6 +109,22 @@ const Analysis = () => {
     recommendations: true,
     severity: true
   });
+
+  // Check if the screen is mobile size
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   // Add print styles on component mount
   useEffect(() => {
@@ -246,7 +263,7 @@ const Analysis = () => {
     <S.Container className={isPrinting ? 'printing' : ''}>
       <S.Content compact={allSectionsClosed}>
         <S.ResultHeader className="no-print">
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', width: isMobile ? '100%' : 'auto' }}>
             <S.ResultIcon>
               <i className="fas fa-clipboard-check"></i>
             </S.ResultIcon>
@@ -260,7 +277,8 @@ const Analysis = () => {
               cursor: 'pointer', 
               fontSize: '14px', 
               color: colors.primary[500],
-              fontWeight: 600
+              fontWeight: 600,
+              marginTop: isMobile ? '8px' : '0'
             }}
           >
             {Object.values(openSections).every(value => value) 

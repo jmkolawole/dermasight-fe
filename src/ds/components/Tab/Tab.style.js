@@ -8,6 +8,15 @@ export const TabContainer = styled.div`
     width: ${(props) => props.$width}px;
     height: ${(props) => props.$height}px;
   }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    
+    & > div {
+      padding: 0 12px;
+      flex: 1;
+    }
+  }
 `;
 
 
@@ -41,6 +50,16 @@ export const TabItem = styled.div`
 
     & p {
       color: ${colors.shades[0]} !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0 8px;
+    text-align: center;
+    
+    & p {
+      font-size: 13px !important;
+      white-space: nowrap;
     }
   }
 `;

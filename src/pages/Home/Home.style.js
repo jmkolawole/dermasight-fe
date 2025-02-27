@@ -16,6 +16,11 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 20px 16px;
+  }
 `;
 
 export const Header = styled.div`
@@ -23,6 +28,10 @@ export const Header = styled.div`
   flex-direction: column;
   gap: 16px;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 export const MainContent = styled.div`
@@ -31,6 +40,10 @@ export const MainContent = styled.div`
   padding-top: 48px;
   width: 100%;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    padding-top: 32px;
+  }
 `;
 
 export const SymptomsWrapper = styled.div`
@@ -39,6 +52,11 @@ export const SymptomsWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   width: 100%;
+  
+  @media (max-width: 768px) {
+    padding-top: 24px;
+    gap: 16px;
+  }
 `;
 
 export const DescriptionWrapper = styled.div`
@@ -55,6 +73,15 @@ export const DescriptionWrapper = styled.div`
   & textarea {
     height: 136px !important;
   }
+  
+  @media (max-width: 768px) {
+    padding: 16px;
+    height: auto !important;
+    
+    & textarea {
+      height: 120px !important;
+    }
+  }
 `;
 
 // Image
@@ -64,6 +91,11 @@ export const ImageContainer = styled.div`
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
   height: 220px;
   padding: 33px;
+  
+  @media (max-width: 768px) {
+    height: 180px;
+    padding: 16px;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -76,16 +108,28 @@ export const ImageWrapper = styled.div`
     border-color: #5dc3c2;
   }
   height: calc(100% - 20px - 25px);
+  
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
 `;
 
 export const DragActive = styled.p`
   color: #5dc3c2;
   font-size: 16px;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const Icon = styled.div`
   font-size: 40px;
   color: #5dc3c2;
+  
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
 export const Text = styled.p`
@@ -95,12 +139,21 @@ export const Text = styled.p`
   font-weight: 400;
   color: rgb(31 41 55 / 1);
   opacity: 0.8;
+  
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const OrText = styled.p`
   font-size: 14px;
   color: #999;
   margin: 8px 0;
+  
+  @media (max-width: 768px) {
+    font-size: 12px;
+    margin: 6px 0;
+  }
 `;
 
 export const BrowseButton = styled.button`
@@ -113,6 +166,12 @@ export const BrowseButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: #4ba8a8;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 6px 16px;
+    height: 36px;
+    font-size: 14px;
   }
 `;
 
@@ -195,6 +254,11 @@ export const HistorySection = styled.div`
   flex-direction: column;
   justify-content: start;
   padding-top: 25px;
+  
+  @media (max-width: 768px) {
+    padding-top: 20px;
+    gap: 16px;
+  }
 `;
 
 export const HistoryContent = styled.div`
@@ -209,6 +273,10 @@ export const HistoryContent = styled.div`
   max-height: 250px;
   overflow: hidden; /* Changed from overflow-y: auto to hidden */
   position: relative; /* Added position relative */
+  
+  @media (max-width: 768px) {
+    max-height: 200px;
+  }
 `;
 
 export const HistoryHeader = styled.div`
@@ -218,12 +286,21 @@ export const HistoryHeader = styled.div`
   padding: 25px 25px 10px 25px;
   z-index: 2;
   border-bottom: 1px solid #f0f0f0;
+  
+  @media (max-width: 768px) {
+    padding: 16px 16px 8px 16px;
+  }
 `;
 
 export const HistoryScrollArea = styled.div`
   overflow-y: auto;
   max-height: 200px;
   padding: 0 25px 25px 25px;
+  
+  @media (max-width: 768px) {
+    max-height: 160px;
+    padding: 0 16px 16px 16px;
+  }
 `;
 
 export const HistoryContentInner = styled.div`
@@ -275,6 +352,12 @@ export const DisclaimerContainer = styled.div`
   margin: 24px 0;
   gap: 12px;
   align-items: flex-start;
+  
+  @media (max-width: 768px) {
+    padding: 12px;
+    margin: 16px 0;
+    gap: 8px;
+  }
 `;
 
 export const DisclaimerIcon = styled.div`

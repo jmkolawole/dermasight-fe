@@ -12,6 +12,7 @@ const Settings = () => {
   const [fieldValues, setFieldValues] = useState({
     firstname: '',
     lastname: '',
+    username: '',
     old_password: '',
     password: '',
     password_confirmation: '',
@@ -20,12 +21,14 @@ const Settings = () => {
   const [fieldErrors, setFieldErrors] = useState({
     firstname: [],
     lastname: [],
+    username: [],
     old_password: [],
     password: [],
     password_confirmation: [],
   });
   const [profileImage, setProfileImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const fileInputRef = useRef(null);
 
@@ -33,11 +36,28 @@ const Settings = () => {
 
   const {mutate, isPending} = useUpdateUserMutation();
 
+  // Check if the screen is mobile size
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
+
   useEffect(() => {
     setFieldValues((prev) => ({
       ...prev,
       firstname: account?.user.first_name || '',
       lastname: account?.user.last_name || '',
+      username: account?.user.username || '',
     }));
     setPreviewImage(getImagesUrl(account.user.avatar));
   }, [account]);
@@ -96,15 +116,17 @@ const Settings = () => {
   return (
     <S.Container>
       <S.Content>
-        <Text weight={600} type="h6">
-          Settings
-        </Text>
+        <S.Header>
+          <Text weight={600} type="h6">
+            Settings
+          </Text>
+        </S.Header>
         <S.ContentInner>
           {/* Profile Image Section */}
           <S.ImageSection>
             <Avatar
-              radius={100}
-              size={100}
+              radius={isMobile ? 80 : 100}
+              size={isMobile ? 80 : 100}
               type={previewImage ? 'image' : 'text'}
               value={
                 previewImage
@@ -118,64 +140,100 @@ const Settings = () => {
               accept="image/*"
               onChange={handleImageChange}
             />
-            <Button onClick={handleChooseImageClick}>Choose Image</Button>
+            <Button 
+              onClick={handleChooseImageClick}
+              width={isMobile ? '100%' : 'auto'}
+            >
+              Choose Image
+            </Button>
           </S.ImageSection>
           {/* Form Fields */}
-          <TextInput
-            type="text"
-            label="First Name"
-            placeholder="Enter your first name"
-            value={fieldValues.firstname}
-            onChange={(e) => handleInputChange(e, 'firstname')}
-            error={fieldErrors?.firstname}
-            onKeyDown={() => resetErrors('firstname')}
-          />
-          <TextInput
-            type="text"
-            label="Last Name"
-            placeholder="Enter your last name"
-            value={fieldValues.lastname}
-            onChange={(e) => handleInputChange(e, 'lastname')}
-            error={fieldErrors?.lastname}
-            onKeyDown={() => resetErrors('lastname')}
-          />
-          <TextInput
-            type="password"
-            label="Current Password"
-            placeholder="Enter your current password"
-            value={fieldValues.old_password}
-            onChange={(e) => handleInputChange(e, 'old_password')}
-            error={fieldErrors?.old_password}
-            onKeyDown={() => resetErrors('old_password')}
-          />
-          <TextInput
-            type="password"
-            label="New Password"
-            placeholder="Enter a new password"
-            value={fieldValues.password}
-            onChange={(e) => handleInputChange(e, 'password')}
-            error={fieldErrors?.password}
-            onKeyDown={() => resetErrors('password')}
-          />
-          <TextInput
-            type="password"
-            label="Confirm New Password"
-            placeholder="Re-enter your new password"
-            value={fieldValues.password_confirmation}
-            onChange={(e) => handleInputChange(e, 'password_confirmation')}
-            error={fieldErrors?.password_confirmation}
-            onKeyDown={() => resetErrors('password_confirmation')}
-          />
-          <Button
+          <S.SettingsSection>
+            <S.SectionTitle>
+              <S.SectionIcon>
+                <i className="fas fa-user"></i>
+              </S.SectionIcon>
+              <Text weight={600} size="md">
+                Personal Information
+              </Text>
+            </S.SectionTitle>
+            <TextInput
+              type="text"
+              label="First Name"
+              placeholder="Enter your first name"
+              value={fieldValues.firstname}
+              onChange={(e) => handleInputChange(e, 'firstname')}
+              error={fieldErrors?.firstname}
+              onKeyDown={() => resetErrors('firstname')}
+            />
+            <TextInput
+              type="text"
+              label="Last Name"
+              placeholder="Enter your last name"
+              value={fieldValues.lastname}
+              onChange={(e) => handleInputChange(e, 'lastname')}
+              error={fieldErrors?.lastname}
+              onKeyDown={() => resetErrors('lastname')}
+            />
+            <TextInput
+              type="text"
+              label="Username"
+              placeholder="Enter your username"
+              value={fieldValues.username}
+              onChange={(e) => handleInputChange(e, 'username')}
+              error={fieldErrors?.username}
+              onKeyDown={() => resetErrors('username')}
+            />
+          </S.SettingsSection>
+          
+          <S.SettingsSection>
+            <S.SectionTitle>
+              <S.SectionIcon>
+                <i className="fas fa-lock"></i>
+              </S.SectionIcon>
+              <Text weight={600} size="md">
+                Change Password
+              </Text>
+            </S.SectionTitle>
+            <TextInput
+              type="password"
+              label="Current Password"
+              placeholder="Enter your current password"
+              value={fieldValues.old_password}
+              onChange={(e) => handleInputChange(e, 'old_password')}
+              error={fieldErrors?.old_password}
+              onKeyDown={() => resetErrors('old_password')}
+            />
+            <TextInput
+              type="password"
+              label="New Password"
+              placeholder="Enter a new password"
+              value={fieldValues.password}
+              onChange={(e) => handleInputChange(e, 'password')}
+              error={fieldErrors?.password}
+              onKeyDown={() => resetErrors('password')}
+            />
+            <TextInput
+              type="password"
+              label="Confirm New Password"
+              placeholder="Re-enter your new password"
+              value={fieldValues.password_confirmation}
+              onChange={(e) => handleInputChange(e, 'password_confirmation')}
+              error={fieldErrors?.password_confirmation}
+              onKeyDown={() => resetErrors('password_confirmation')}
+            />
+          </S.SettingsSection>
+          
+          <S.SaveButton
             radius={8}
             size="md"
             variant="primary"
-            width="fit-content"
+            width={isMobile ? '100%' : 'fit-content'}
             onClick={handleSubmit}
             disabled={isPending}
           >
             {isPending ? <Loader /> : 'Update Information'}
-          </Button>
+          </S.SaveButton>
         </S.ContentInner>
       </S.Content>
     </S.Container>

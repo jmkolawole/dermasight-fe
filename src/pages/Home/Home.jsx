@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Tab, Text} from '../../ds';
 import * as S from './Home.style';
 import DragAndDrop from './DragAndDrop';
@@ -30,11 +30,28 @@ const MedicalDisclaimer = () => {
 
 const Home = () => {
   const [uploadType, setUploadType] = useState('upload');
+  const [isMobile, setIsMobile] = useState(false);
 
   const navigate = useNavigate();
 
   const {isPending: isDescriptionPending, mutate: mutateDescription} = useGetDiagnosisMutation();
   const {isPending: isImagePending, mutate: mutateImage} = useImageDiagnosisMutation();
+
+  // Check if the screen is mobile size
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const handleUpload = (base64Image) => {
     const payload = {
@@ -88,7 +105,7 @@ const Home = () => {
           <Tab
             height={40}
             items={['Upload Image', 'Describe Symptoms']}
-            width={180}
+            width={isMobile ? '100%' : 180}
             activeTab={
               uploadType === 'upload' ? 'Upload Image' : 'Describe Symptoms'
             }

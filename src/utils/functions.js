@@ -53,11 +53,32 @@ export const timeAgo = (datetime) => {
 };
 
 export const parseApiResponse = (responseText) => {
+  // Check if the response is a JSON string and parse it if needed
+  let parsedText = responseText;
+  
+  try {
+    // If the response is a JSON string, parse it
+    if (typeof responseText === 'string' && (responseText.startsWith('{') || responseText.includes('"'))) {
+      const parsedJson = JSON.parse(responseText);
+      
+      // Check if the parsed JSON has a response property
+      if (parsedJson.response) {
+        parsedText = parsedJson.response;
+      } else {
+        // If there's no response property, use the entire parsed object
+        parsedText = JSON.stringify(parsedJson);
+      }
+    }
+  } catch (error) {
+    console.log('Error parsing response JSON:', error);
+    // If parsing fails, continue with the original text
+  }
+
   // Split the response text by the headers
-  const descriptionMatch = responseText.match(/\*\*Description:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
-  const recommendationMatch = responseText.match(/\*\*Recommendation:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
-  const assessmentMatch = responseText.match(/\*\*Assessment:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
-  const severityMatch = responseText.match(/\*\*Rating:\*\*\s*Severity Score:\s*(\d+)\/5/);
+  const descriptionMatch = parsedText.match(/\*\*Description:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
+  const recommendationMatch = parsedText.match(/\*\*Recommendation:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
+  const assessmentMatch = parsedText.match(/\*\*Assessment:\*\*\s*([\s\S]*?)(\n\n\*\*|$)/);
+  const severityMatch = parsedText.match(/\*\*Rating:\*\*\s*Severity Score:\s*(\d+)\/5/);
 
   // Extract the content based on the matches
   const symptomsDescription = descriptionMatch ? descriptionMatch[1].trim() : null;
